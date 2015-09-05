@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Dota2 Images/Icons Download</title>
+  <meta name="description" content="Dota2 hero and item images from Steam.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+
+</head>
+<body>
+
+  <div class="container">
+    <h1>Dota2 Images/Icons</h1>
+    <p>Last update: <%= Time.now %></p>
+    <h2>Heroes</h2>
+    <% for path in hero_path %>
+      <%= "<img src='#{path}'>" %>
+    <% end %>
+    <br>
+    <a class="button button-primary" href="file/heroes-full-latest.zip">Download 256x114px png</a>
+    <a class="button button-primary" href="file/heroes-lg-latest.zip">Download 205x114px png</a>
+    <a class="button button-primary" href="file/heroes-sb-latest.zip">Download 59x33px png</a>
+    <a class="button button-primary" href="file/heroes-vert-latest.zip">Download 234x272px jpg</a>
+    <br>
+    <h2>Items</h2>
+    <% for path in item_path %>
+      <%= "<img src='#{path}'>" %>
+    <% end %>
+    <br>
+    <a class="button button-primary" href="file/items-lg-latest.zip">Download 85x64px png</a>
+    <a class="button button-primary" href="file/items-eg-latest.zip">Download 27x20px png</a>
+    <br>
+    <h2>Abilities</h2>
+    <% for path in ability_path %>
+      <%= "<img src='#{path}'>" %>
+    <% end %>
+    <br>
+    <a class="button button-primary" href="file/abilities-lg-latest.zip">Download 128x128px png</a>
+    <a class="button button-primary" href="file/abilities-hp2-latest.zip">Download 105x105px png</a>
+    <a class="button button-primary" href="file/abilities-hp1-latest.zip">Download 90x90px png</a>
+    <a class="button button-primary" href="file/abilities-md-latest.zip">Download 64x64px png</a>
+    <a class="button button-primary" href="file/abilities-sm-latest.zip">Download 32x32px png</a>
+
+  </div>
+
+</body>
+</html>
