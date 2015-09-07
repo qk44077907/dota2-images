@@ -106,6 +106,7 @@ def update
     index_update
     `git add .`
     `git commit -m "Build at #{Time.now}"`
+    `git push`
   end
   puts "## Success"
 end
