@@ -24,7 +24,7 @@ def wget_hero(type)
   Dir.chdir(File.expand_path("./" + directory_name, File.dirname(__FILE__)))
   File.open(path + '/hero_list').each do |line|
     fname = "#{line.strip}_#{type}.#{type == :vert ? 'jpg' : 'png'}"
-    %x(wget #{hero_base + fname}) unless File.exists?(fname)
+    %x(wget -q #{hero_base + fname}) unless File.exists?(fname)
   end
   Dir.chdir(path)
 end
@@ -42,7 +42,7 @@ def wget_item(type)
       fname = "#{line.strip}_#{type}.png"
     end
 
-    %x(wget #{item_base + fname}) unless File.exists?(fname)
+    %x(wget -q #{item_base + fname}) unless File.exists?(fname)
   end
   Dir.chdir(path)
 end
@@ -55,7 +55,7 @@ def wget_ability(type)
   Dir.chdir(File.expand_path("./" + directory_name, File.dirname(__FILE__)))
   File.open(path + '/ability_list').each do |line|
     fname = "#{line.strip}_#{type}.png"
-    %x(wget #{ability_base + fname}) unless File.exists?(fname)
+    %x(wget -q #{ability_base + fname}) unless File.exists?(fname)
   end
   Dir.chdir(path)
 end
@@ -94,7 +94,20 @@ def zip_images
   end 
 end
 
-get_list
-index_update
-zip_images
+def update
+  puts "## Get list"
+  get_list
+  puts "## Wget"
+  wget
+  message = `git status`
+  puts "## Updating"
+  if message.include?("Changes")
+    zip_images
+    index_update
+    `git add .`
+    `git commit -m "Build at #{Time.now}"`
+  end
+  puts "## Success"
+end
 
+update
