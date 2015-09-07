@@ -1,6 +1,6 @@
 require 'dota'
 
-def getList
+def get_list
   api = Dota.api
   heroes = api.heroes
   f1 = File.open('hero_list','w') 
@@ -85,5 +85,16 @@ def wget
   wget_ability(:hp2)
 end
 
-getList
+def zip_images
+  dir = Dir['*'].select{|i| i =~ /\A(abilities|heroes|items)/ }
+  dir.each do |d|
+    %x(zip -r9X #{d + '_latest.zip'} #{d}) 
+    fname = d + '_latest.zip'
+    %x(mv #{fname} #{"file/" + fname.gsub('_', '-')}) 
+  end 
+end
+
+get_list
 index_update
+zip_images
+
