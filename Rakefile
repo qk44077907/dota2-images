@@ -1,5 +1,6 @@
 task default: %w[update]
 
 task :update do
-    ruby "update.rb"
+  `gem update dota`
+  ruby "update.rb"
 end
